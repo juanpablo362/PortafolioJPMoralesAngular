@@ -1,6 +1,23 @@
 <app-navbar />
-<router-outlet />
 
-<footer>
-  <p>Derechos reservados &copy; 2025 JPMorales</p>
-</footer>
+<main>
+  <section id="hero" class="bg-[#121132]">
+    <app-hero />
+  </section>
+    <section id="projects" class="bg-[#121132] py-16 sm:py-20">
+    <app-projects />
+  </section>
+  <section id="about" class="py-16 sm:py-20">
+    <app-about />
+  </section>
+  <section id="skills" class="py-16 sm:py-20">
+    <app-skills />
+  </section>
+
+
+  <section id="contact" class="bg-[#121132] py-16 sm:py-20">
+    <app-contact />
+  </section>
+</main>
+
+<app-footer />

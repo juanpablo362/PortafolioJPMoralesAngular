@@ -1,0 +1,169 @@
+{
+  "categories": [
+    {
+      "name": "Frontend",
+      "icon": "💻",
+      "color": "purple",
+      "skills": [
+        {
+          "name": "Angular",
+          "level": 95,
+          "years": 4,
+          "icon": "angular",
+          "description": "Framework principal para desarrollo frontend escalable y modular."
+        },
+        {
+          "name": "TypeScript",
+          "level": 90,
+          "years": 4,
+          "icon": "typescript",
+          "description": "Superset de JavaScript que aporta seguridad y escalabilidad al código."
+        },
+        {
+          "name": "Tailwind CSS",
+          "level": 88,
+          "years": 3,
+          "icon": "tailwind",
+          "description": "Framework utility-first para diseño responsivo y ágil."
+        },
+        {
+          "name": "UI/UX Design",
+          "level": 80,
+          "years": 2,
+          "icon": "ux",
+          "description": "Principios y herramientas para crear interfaces intuitivas y atractivas."
+        }
+      ]
+    },
+    {
+      "name": "Backend & Automatización",
+      "icon": "⚙️",
+      "color": "green",
+      "skills": [
+        {
+          "name": ".NET Core",
+          "level": 92,
+          "years": 5,
+          "icon": "dotnet",
+          "description": "Framework robusto para desarrollo backend, APIs y microservicios."
+        },
+        {
+          "name": "Node.js",
+          "level": 85,
+          "years": 3,
+          "icon": "nodejs",
+          "description": "Runtime para crear servicios backend ligeros y escalables."
+        },
+        {
+          "name": "Python",
+          "level": 80,
+          "years": 3,
+          "icon": "python",
+          "description": "Lenguaje versátil para automatización, scripting y desarrollo AI."
+        },
+        {
+          "name": "Automatización de Procesos",
+          "level": 75,
+          "years": 2,
+          "icon": "automation",
+          "description": "Uso de scripts y herramientas para optimizar flujos y tareas repetitivas."
+        }
+      ]
+    },
+    {
+      "name": "Base de Datos y Arquitectura",
+      "icon": "🗄️",
+      "color": "blue",
+      "skills": [
+        {
+          "name": "PostgreSQL",
+          "level": 85,
+          "years": 3,
+          "icon": "postgresql",
+          "description": "Base de datos relacional, soporte para modelado avanzado y consultas complejas."
+        },
+        {
+          "name": "MongoDB",
+          "level": 80,
+          "years": 3,
+          "icon": "mongodb",
+          "description": "Base de datos NoSQL orientada a documentos para datos flexibles."
+        },
+        {
+          "name": "Diseño de Arquitectura de Software",
+          "level": 88,
+          "years": 3,
+          "icon": "architecture",
+          "description": "Patrones, mejores prácticas y diseño de sistemas escalables y mantenibles."
+        }
+      ]
+    },
+    {
+      "name": "Cloud, DevOps e Inteligencia Artificial",
+      "icon": "☁️",
+      "color": "orange",
+      "skills": [
+        {
+          "name": "AWS",
+          "level": 85,
+          "years": 3,
+          "icon": "aws",
+          "description": "Implementación y gestión de infraestructura en la nube."
+        },
+        {
+          "name": "Docker",
+          "level": 82,
+          "years": 3,
+          "icon": "docker",
+          "description": "Contenerización para despliegue eficiente y reproducible."
+        },
+        {
+          "name": "CI/CD",
+          "level": 85,
+          "years": 3,
+          "icon": "cicd",
+          "description": "Automatización de pipelines de integración y despliegue continuo."
+        },
+        {
+          "name": "Inteligencia Artificial",
+          "level": 78,
+          "years": 2,
+          "icon": "ai",
+          "description": "Implementación de modelos ML, procesamiento de datos y algoritmos inteligentes."
+        }
+      ]
+    }
+  ],
+  "softSkills": [
+    {
+      "name": "Liderazgo de Equipo",
+      "level": 90,
+      "description": "Coordinación eficiente y motivación de equipos multidisciplinarios."
+    },
+    {
+      "name": "Comunicación Efectiva",
+      "level": 88,
+      "description": "Interacción clara con stakeholders, facilitando la toma de decisiones."
+    },
+    {
+      "name": "Resolución de Problemas",
+      "level": 92,
+      "description": "Análisis profundo y soluciones pragmáticas en entornos complejos."
+    },
+    {
+      "name": "Aprendizaje Continuo",
+      "level": 95,
+      "description": "Adaptabilidad y actualización constante en tecnologías emergentes."
+    },
+    {
+      "name": "Gestión Ágil de Proyectos",
+      "level": 85,
+      "description": "Planificación y ejecución mediante metodologías Scrum y Kanban."
+    },
+    {
+      "name": "Contribución Open Source",
+      "level": 75,
+      "description": "Participación activa en proyectos comunitarios y documentación técnica."
+    }
+  ]
+}

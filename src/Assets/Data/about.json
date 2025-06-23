@@ -1,0 +1,106 @@
+{
+  "personal": {
+    "name": "Juan Pablo",
+    "title": "Desarrollador Full Stack Jr.",
+    "bio": "Estudiante de ingenieria en software. Apasionado por el desarrollo de soluciones tecnologías especializado en Angular, .NET y PostgreSQL. Siempre en busca de aprender y crear soluciones útiles.",
+    "location": "Ciudad Obregón, Sonora",
+    "email": "jpmoralescontacto@gmail.com",
+    "phone": "+52 (644) 260-1855",
+    "linkedin": "https://www.linkedin.com/in/jpmoralescontacto/",
+    "github": "https://github.com/juanpablo362"
+  },
+  "experience": [
+    {
+      "id": 1,
+      "position": "Desarrollador Full Stack Jr.",
+      "company": "laboratorio Digital - Universidad Tecnológica del Sur de Sonora (UTS)",
+      "period": "2024 - Presente",
+      "location": "Ciudad Obregón, Sonora",
+      "description": "Formo parte de un equipo ágil de 5 desarrolladores que crea soluciones tecnológicas internas para la universidad y proyectos de Gobierno Digital. He trabajado con Angular, .NET, PostgreSQL, Git y Notion, bajo metodología Scrum. Participé en el desarrollo del sistema de solicitudes de recuperación académica, desde desde reuniones con autoridades y el levantamiento de requerimientos hasta la implementación de módulos clave. Diseñé el módulo de rol Caja y la pantalla para docentes en Angular, además de colaborar en la estructura de la base de datos y lógica backend.",
+      "technologies": ["Angular", ".NET Web API", "PostgreSQL", "Git", "Notion"],
+      "achievements": [
+                "Aceleracion de procesos",
+                "Mejora en el proceso y administración de recuperación académica",
+                "Mejora de la experiencia del usuario",
+                "Reduccion de tareas repetitivas",
+        "Implementación de autenticación y control de roles",
+        "Diseño de base de datos relacional optimizada",
+        "Interfaz moderna y funcional",
+        "Diseño de diagramas y scripts reutilizables para otros módulos internos"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "degree": "TSU en Tecnologías de la Información - Área Desarrollo de Software Multiplataforma",
+      "institution": "UTS - Universidad Tecnológica del Sur de Sonora",
+      "period": "2023 - 2025",
+      "location": "Ciudad Obregón, Sonora",
+      "description": "Formación técnica enfocada en desarrollo de software, bases de datos, web APIs, móviles y arquitectura por capas.",
+      "gpa": "9.5/10"
+    },
+    {
+      "id": 2,
+      "degree": "Ingeniería en Software (en curso)",
+      "institution": "UTS - Universidad Tecnológica del Sur de Sonora",
+      "period": "Agosto 2025 - 2027",
+      "location": "Ciudad Obregón, Sonora",
+      "description": "Formación profesional orientada a arquitectura, calidad de software, seguridad y DevOps.",
+      "gpa": "N/A"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "Curso Profesional de Angular",
+      "issuer": "Platzi",
+      "date": "2024",
+      "expiry": "N/A",
+      "id": "PLTZ-ANG-123"
+    },
+    {
+      "name": "Curso de .NET API RESTful",
+      "issuer": "Udemy",
+      "date": "2024",
+      "expiry": "N/A",
+      "id": "UDM-DNET-456"
+    },
+    {
+      "name": "Curso de PostgreSQL con Prácticas",
+      "issuer": "CodigoFacilito",
+      "date": "2024",
+      "expiry": "N/A",
+      "id": "OPBC-PSQL-789"
+    }
+  ],
+  "interests": [
+  "Arquitectura de Software",
+  "Inteligencia Artificial",
+  "Automatización de Procesos",
+  "UI/UX",
+  "Open Source y Documentación Técnica",
+  "Desarrollo Web Full Stack",
+  "DevOps y CI/CD",
+  "Machine Learning aplicado",
+  "Diseño de Arquitecturas Escalables",
+  "Mentoría y liderazgo técnico"
+
+  ],
+  "languages": [
+    {
+      "language": "Español",
+      "level": "Nativo",
+      "proficiency": 100
+    },
+    {
+      "language": "Inglés",
+      "level": "B2",
+      "proficiency": 70
+    },
+    {
+      "language": "Chino Mandarín",
+      "level": "A2",
+      "proficiency": 30
+    }
+  ]
+}

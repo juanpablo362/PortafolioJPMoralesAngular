@@ -1,0 +1,126 @@
+[
+  {
+    "id": 1,
+    "title": "JPStore",
+    "description": "Proyecto personal, plataforma completa de comercio electrónico con gestión de productos, carrito de compras, pagos y panel administrativo.",
+    "image": "assets/Images/jpstore.png",
+    "technologies": ["Angular", ".NET Core", "SQL Server", "Azure"],
+    "category": "Full Stack",
+    "year": 2024,
+    "status": "Completado",
+    "github": "https://github.com/jpmorales/ecommerce",
+    "demo": "https://ecommerce-saudj2889snnw.com",
+    "features": [
+      "Autenticación JWT",
+      "Gestión de productos",
+      "Carrito de compras",
+      "Panel administrativo",
+      "Responsive design"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Task Master",
+    "description": "Proyecto personal, aplicación web para gestión de tareas y proyectos con colaboración en tiempo real para tablero kanban.",
+    "image": "assets/Images/taskmaster.png",
+    "technologies": ["Vue.js", "Node.js", "MongoDB", "Socket.io"],
+    "category": "Full Stack",
+    "year": 2024,
+    "status": "Completado",
+    "github": "https://github.com/jpmorales/taskmanager",
+    "demo": "https://taskmanager-demo.com",
+    "features": [
+      "Gestión de tareas",
+      "Colaboración en tiempo real",
+      "Notificaciones push",
+      "Dashboard interactivo",
+      "Integración con calendario"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "FarmaAlert",
+    "description": "Proyecto escolar en equipo, Sistema de gestión de un pastillero inteligente IoT con alertas de tiempo y control de stock mediante aplicacion movil y web. Desarrolle el papel de SCRUM master y participe en el desarrollo de toda la aplicación desde los requerimientos hasta la entrega final. Me enfoqué mas en el desarrollo de la aplicación móvil y el backend.",
+    "image": "assets/Images/farmaAlert.png",
+    "technologies": ["Angular", "Node.js", "Express", "MongoDB", "SCRUM"],
+    "category": "Full Stack",
+    "year": 2025, 
+    "status": "Completado",
+    "github": "https://github.com/JuanCruz1103/FarmaAlert",
+    "demo": "https://xxaas.github.io/farmaalert.com",
+    "features": [
+      "Pastillero inteligente",
+      "Alertas de tiempo",
+      "Control de stock",
+      "Dashboard de métricas",
+      "Control de pacientes"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Inventario UTS",
+    "description": "Proyecto que empezo como escolar y termine agregando funcionalidades como proyecto personal. Aplicación web para gestionar el inventario de los laboratorios de computo de la universidad .",
+    "image": "assets/Images/inventarioUTS.png",
+    "technologies": ["Angular", "Node.js", "Express", "MongoDB", "SCRUM"],
+    "category": "Full Stack",
+    "year": 2024,
+    "status": "Completado",
+    "github": "https://github.com/jpmorales/banking-app",
+    "demo": "https://banking-app-demo.com",
+    "features": [
+      "JWT",
+      "Panel de administracion",
+      "Validacion de entregas y devoluciones",
+      "Notificaciones push",
+      "Modo offline",
+      "Codigo QR para inventariado"
+    ]
+  }, 
+  {
+    "id": 5,
+    "title": "EduTech",
+    "description": "Proyecto personal, aplicación web para gestión de cursos y estudiantes. Desarrolle el papel de SCRUM master y participe en el desarrollo de toda la aplicación desde los requerimientos hasta la entrega final.",
+    "image": "assets/Images/edutech.png",
+    "technologies": ["Angular", "Node.js", "Express", "MongoDB", "SCRUM"],
+    "category": "AI/ML",
+    "year": 2024,
+    "status": "Completado",
+    "github": "https://github.com/jpmorales/ai-chat",
+    "demo": "https://ai-chat-demo.com",
+    "features": [
+      "Procesamiento de lenguaje natural",
+      "Respuestas contextuales",
+      "Integración con APIs de OpenAI",
+      "Historial de conversaciones",
+      "Personalización de respuestas",
+      "Sistema de calificaciones",
+      "Sistema de evaluaciones",
+      "Sistema de reportes",
+      "Sistema de notificaciones"
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Gestor de finanzas personales",
+    "description": "Proyecto personal, aplicación web para gestión de finanzas personales.",
+    "image": "assets/Images/gestor-de-finanzas.png",
+    "technologies": ["Angular", "Node.js", "Express", "PostgreSQL", "TailwindCSS"],
+    "category": "Full Stack",
+    "year": 2025,
+    "status": "En proceso",
+    "github": "https://github.com/juanpablo362/finances-app",
+    "demo": "https://finances-app-demo.com",
+    "features": [
+      "Gestión de ingresos y gastos",
+      "Gráficos interactivos",
+      "Exportación de reportes",
+      "Alertas personalizables",
+      "Sistema de categorías",
+      "Sistema de etiquetas",
+      "Sistema de presupuestos",
+      "Sistema de reportes",
+      "Sistema de notificaciones",
+      "Gestión de usuarios"
+    ]
+  }
+]
