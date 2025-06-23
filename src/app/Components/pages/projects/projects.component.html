@@ -1,21 +1,21 @@
 <!-- Projects Page -->
 <div class="min-h-screen">
   <!-- Header Section -->
-  <section class="pt-32 pb-16 relative overflow-hidden">
+  <section class="pt-24 sm:pt-32 pb-12 sm:pb-16 relative overflow-hidden">
     <div class="absolute inset-0">
-      <div class="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-      <div class="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
-      <div class="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+      <div class="absolute top-0 -left-4 w-48 h-48 sm:w-72 sm:h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+      <div class="absolute top-0 -right-4 w-48 h-48 sm:w-72 sm:h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div class="absolute -bottom-8 left-20 w-48 h-48 sm:w-72 sm:h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
     </div>
     
-    <div class="container mx-auto px-6 relative z-10">
+    <div class="container mx-auto px-4 sm:px-6 relative z-10">
       <div class="text-center">
-        <h1 class="text-6xl font-bold text-white mb-6">
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 sm:mb-6">
           <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
             Mis Proyectos
           </span>
         </h1>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        <p class="text-base sm:text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
           Algunos de los proyectos que demuestran mi experiencia en desarrollo full stack, 
           aplicaciones móviles, etc.
         </p>
@@ -61,16 +61,16 @@
 -->
 
   <!-- Projects Grid -->
-  <section class="py-16">
-    <div class="container mx-auto px-6">
+  <section class="py-12 sm:py-16">
+    <div class="container mx-auto px-4 sm:px-6">
       <!-- Loading State -->
       <div *ngIf="isLoading" class="flex justify-center items-center py-20">
-        <div class="animate-spin rounded-full h-16 w-16 border-b-2 border-purple-500"></div>
+        <div class="animate-spin rounded-full h-12 w-12 sm:h-16 sm:w-16 border-b-2 border-purple-500"></div>
       </div>
 
       <!-- Error State -->
       <div *ngIf="error" class="text-center py-20">
-        <div class="text-red-400 text-xl mb-4">{{ error }}</div>
+        <div class="text-red-400 text-lg sm:text-xl mb-4">{{ error }}</div>
         <button 
           (click)="loadProjects()"
           class="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:scale-105 transition-all duration-300">
@@ -79,7 +79,7 @@
       </div>
 
       <!-- Projects Grid -->
-      <div *ngIf="!isLoading && !error" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div *ngIf="!isLoading && !error" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         <div 
           *ngFor="let project of filteredProjects" 
           (click)="openProjectModal(project)"
@@ -87,49 +87,49 @@
           <!-- Project Card -->
           <div class="relative bg-slate-800/50 backdrop-blur-sm border border-purple-500/30 rounded-2xl overflow-hidden hover:border-purple-500/60 transition-all duration-300 hover:scale-105 h-full flex flex-col">
             <!-- Project Image -->
-            <div class="h-48 relative overflow-hidden">
+            <div class="h-40 sm:h-48 relative overflow-hidden">
               <img [src]="project.image" [alt]="project.title" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
               <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
             </div>
 
             <!-- Project Content -->
-            <div class="p-6 flex flex-col flex-grow">
+            <div class="p-4 sm:p-6 flex flex-col flex-grow">
               <!-- Header -->
-              <div class="flex items-start justify-between mb-4">
-                <div>
-                  <h3 class="text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300">
+              <div class="flex items-start justify-between mb-3 sm:mb-4">
+                <div class="flex-1">
+                  <h3 class="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300">
                     {{ project.title }}
                   </h3>
-                  <div class="flex items-center gap-2 mb-3">
+                  <div class="flex flex-wrap items-center gap-2 mb-3">
                     <span 
-                      [class]="getCategoryColor(project.category) + ' px-3 py-1 rounded-full text-xs font-medium text-white'">
+                      [class]="getCategoryColor(project.category) + ' px-2 sm:px-3 py-1 rounded-full text-xs font-medium text-white'">
                       {{ project.category }}
                     </span>
                     <span 
-                      [class]="getStatusColor(project.status) + ' px-3 py-1 rounded-full text-xs font-medium text-white'">
+                      [class]="getStatusColor(project.status) + ' px-2 sm:px-3 py-1 rounded-full text-xs font-medium text-white'">
                       {{ project.status }}
                     </span>
                   </div>
                 </div>
-                <span class="text-gray-400 text-sm">{{ project.year }}</span>
+                <span class="text-gray-400 text-xs sm:text-sm ml-2">{{ project.year }}</span>
               </div>
 
               <!-- Description -->
-              <p class="text-gray-300 text-sm mb-4 leading-relaxed flex-grow">
+              <p class="text-gray-300 text-xs sm:text-sm mb-4 leading-relaxed flex-grow line-clamp-3">
                 {{ project.description }}
               </p>
 
               <!-- Technologies -->
-              <div *ngIf="project.technologies && project.technologies.length > 0" class="flex flex-wrap gap-2 mt-auto">
+              <div *ngIf="project.technologies && project.technologies.length > 0" class="flex flex-wrap gap-1 sm:gap-2 mt-auto">
                 <span 
-                  *ngFor="let tech of project.technologies.slice(0, 4)" 
+                  *ngFor="let tech of project.technologies.slice(0, 3)" 
                   class="px-2 py-1 bg-slate-700 text-gray-300 text-xs rounded-md">
                   {{ tech }}
                 </span>
                 <span 
-                  *ngIf="project.technologies.length > 4" 
+                  *ngIf="project.technologies.length > 3" 
                   class="px-2 py-1 bg-slate-700 text-gray-300 text-xs rounded-md">
-                  +{{ project.technologies.length - 4 }}
+                  +{{ project.technologies.length - 3 }}
                 </span>
               </div>
             </div>
@@ -139,7 +139,7 @@
 
       <!-- No Results -->
       <div *ngIf="!isLoading && !error && filteredProjects.length === 0" class="text-center py-20">
-        <div class="text-gray-400 text-xl mb-4">No se encontraron proyectos con los filtros seleccionados</div>
+        <div class="text-gray-400 text-lg sm:text-xl mb-4">No se encontraron proyectos con los filtros seleccionados</div>
         <button 
           (click)="clearFilters()"
           class="px-6 py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white rounded-xl hover:scale-105 transition-all duration-300">

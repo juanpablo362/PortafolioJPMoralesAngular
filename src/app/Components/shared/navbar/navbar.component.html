@@ -1,11 +1,11 @@
 <nav class="fixed top-0 w-full z-50 transition-all duration-500"
      [ngClass]="isScrolled ? 'bg-slate-900/90 backdrop-blur-md border-b border-pink-200/20' : 'bg-transparent'">
-  <div class="container mx-auto px-6">
-    <div class="flex items-center justify-between h-20">
+  <div class="container mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-16 sm:h-20">
       <!-- Logo -->
       <div class="flex items-center">
-        <a href="#hero" class="group flex items-center space-x-3">
-          <img src="assets/Images/jplogo.png" alt="JP Logo" class="w-12 h-12 object-contain rounded-xl">
+        <a href="#hero" class="group flex items-center space-x-2 sm:space-x-3">
+          <img src="assets/Images/jplogo.png" alt="JP Logo" class="w-8 h-8 sm:w-12 sm:h-12 object-contain rounded-xl">
         </a>
       </div>
 
@@ -71,12 +71,12 @@
       <div class="lg:hidden">
         <button (click)="toggleMobileMenu()" 
                 class="relative p-2 text-gray-300 hover:text-white focus:outline-none focus:text-white transition-colors duration-300">
-          <div class="w-6 h-6 flex flex-col justify-center items-center">
-            <span class="w-6 h-0.5 bg-current transform transition-all duration-300"
+          <div class="w-5 h-5 sm:w-6 sm:h-6 flex flex-col justify-center items-center">
+            <span class="w-5 h-0.5 sm:w-6 sm:h-0.5 bg-current transform transition-all duration-300"
                   [ngClass]="isMobileMenuOpen ? 'rotate-45 translate-y-1' : '-translate-y-1'"></span>
-            <span class="w-6 h-0.5 bg-current transition-all duration-300"
+            <span class="w-5 h-0.5 sm:w-6 sm:h-0.5 bg-current transition-all duration-300"
                   [ngClass]="isMobileMenuOpen ? 'opacity-0' : 'opacity-100'"></span>
-            <span class="w-6 h-0.5 bg-current transform transition-all duration-300"
+            <span class="w-5 h-0.5 sm:w-6 sm:h-0.5 bg-current transform transition-all duration-300"
                   [ngClass]="isMobileMenuOpen ? '-rotate-45 -translate-y-1' : 'translate-y-1'"></span>
           </div>
         </button>
@@ -85,7 +85,7 @@
 
     <!-- Mobile Navigation -->
     <div class="lg:hidden overflow-hidden transition-all duration-300"
-         [ngClass]="isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'">
+         [ngClass]="isMobileMenuOpen ? 'max-h-[30rem] opacity-100' : 'max-h-0 opacity-0'">
       <div class="px-4 py-6 space-y-2 bg-slate-800/95 backdrop-blur-md rounded-xl mt-4 border border-pink-200/20">
         <a href="#hero" (click)="closeMobileMenu()"
            class="flex items-center px-4 py-3 rounded-lg text-gray-300 hover:text-white hover:bg-pink-300/10 font-medium transition-all duration-300 border border-transparent">
@@ -139,4 +139,4 @@
 </nav>
 
 <!-- Spacer to prevent content from hiding behind fixed navbar -->
-<div class="h-20"></div>
+<div class="h-16 sm:h-20"></div>

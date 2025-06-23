@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 /* Reset and base styles */
 * {
@@ -81,4 +81,67 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #6366F1; /* Color del pulgar al pasar el mouse (indigo-500) */
+}
+
+/* Custom styles for better mobile experience */
+@layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Smooth scrolling for mobile */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Better touch targets for mobile */
+  @media (max-width: 640px) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+  
+  /* Better modal experience on mobile */
+  @media (max-width: 640px) {
+    .modal-content {
+      margin: 1rem;
+      max-height: calc(100vh - 2rem);
+    }
+  }
+  
+  /* Improve text readability on mobile */
+  @media (max-width: 640px) {
+    p {
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.2;
+    }
+  }
+  
+  /* Better spacing for mobile */
+  @media (max-width: 640px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+  
+  /* Improve button accessibility on mobile */
+  @media (max-width: 640px) {
+    button:focus, a:focus {
+      outline: 2px solid #ec4899;
+      outline-offset: 2px;
+    }
+  }
 }
