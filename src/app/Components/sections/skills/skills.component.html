@@ -1,142 +1,117 @@
-<!-- Skills Section -->
-<section class="py-24 bg-slate-900 relative overflow-hidden">
-  <!-- Background Pattern -->
-  <div class="absolute inset-0 opacity-5">
-    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 25% 25%, rgba(244, 114, 182, 0.3) 0%, transparent 50%), radial-gradient(circle at 75% 75%, rgba(251, 113, 133, 0.3) 0%, transparent 50%);"></div>
-  </div>
-  
-  <div class="container mx-auto px-6 relative z-10">
-    <div class="text-center mb-20">
-      <h2 class="text-5xl font-bold text-white mb-6">
-        <span class="bg-gradient-to-r from-pink-300 to-rose-300 bg-clip-text text-transparent">
-          Stack Tecnológico
-        </span>
-      </h2>
-      <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-        Domino un amplio espectro de tecnologías modernas para crear soluciones robustas, escalables y de alto rendimiento
+<section>
+  <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <div class="mb-14">
+      <p class="section-label">Tecnologías</p>
+      <h2 class="section-title mb-4">Stack tecnológico</h2>
+      <p class="section-subtitle">
+        Herramientas y frameworks que utilizo para construir soluciones web robustas y escalables.
       </p>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Frontend -->
-      <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-        <div class="relative bg-slate-800/50 backdrop-blur-sm border border-pink-300/30 rounded-2xl p-8 hover:border-pink-300/60 transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-pink-400 to-rose-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-white text-center mb-4">Frontend</h3>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">Angular</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[65%] h-full bg-gradient-to-r from-pink-400 to-rose-400 rounded-full"></div>
-              </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="card p-6">
+        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Frontend</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>Angular</span><span>65%</span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">React</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[30%] h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-              </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[65%] bg-zinc-400 rounded-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>React</span><span>30%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[30%] bg-zinc-500 rounded-full"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Backend -->
-      <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-        <div class="relative bg-slate-800/50 backdrop-blur-sm border border-rose-300/30 rounded-2xl p-8 hover:border-rose-300/60 transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-rose-400 to-pink-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-            </svg>
+
+      <div class="card p-6">
+        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Backend</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>.NET Core</span><span>60%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[60%] bg-zinc-400 rounded-full"></div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-white text-center mb-4">Backend</h3>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">.NET Core</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[60%] h-full bg-gradient-to-r from-pink-400 to-rose-400 rounded-full"></div>
-              </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>Node.js</span><span>35%</span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">Node.js</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[35%] h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
-              </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[35%] bg-zinc-500 rounded-full"></div>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">Java</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[25%] h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full"></div>
-              </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>Java</span><span>25%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[25%] bg-zinc-600 rounded-full"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Database -->
-      <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-pink-400 to-rose-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-        <div class="relative bg-slate-800/50 backdrop-blur-sm border border-pink-300/30 rounded-2xl p-8 hover:border-pink-300/60 transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-pink-400 to-rose-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"></path>
-            </svg>
+
+      <div class="card p-6">
+        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Base de datos</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>PostgreSQL</span><span>55%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[55%] bg-zinc-400 rounded-full"></div>
+            </div>
           </div>
-          <h3 class="text-xl font-semibold text-white text-center mb-4">Base de Datos</h3>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">PostgreSQL</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[55%] h-full bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full"></div>
-              </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>SQL Server</span><span>50%</span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">SQL Server</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[50%] h-full bg-gradient-to-r from-red-500 to-orange-500 rounded-full"></div>
-              </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[50%] bg-zinc-500 rounded-full"></div>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">MongoDB</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[45%] h-full bg-gradient-to-r from-green-500 to-emerald-500 rounded-full"></div>
-              </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>MongoDB</span><span>45%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[45%] bg-zinc-500 rounded-full"></div>
             </div>
           </div>
         </div>
       </div>
-      
-      <!-- Cloud -->
-      <div class="group relative">
-        <div class="absolute inset-0 bg-gradient-to-r from-rose-400 to-pink-400 rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
-        <div class="relative bg-slate-800/50 backdrop-blur-sm border border-rose-300/30 rounded-2xl p-8 hover:border-rose-300/60 transition-all duration-300 hover:scale-105">
-          <div class="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-rose-400 to-pink-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
-            </svg>
-          </div>
-          <h3 class="text-xl font-semibold text-white text-center mb-4">Cloud & DevOps</h3>
-          <div class="space-y-2">
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">AWS</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[30%] h-full bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full"></div>
-              </div>
+
+      <div class="card p-6">
+        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Cloud & DevOps</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>AWS</span><span>30%</span>
             </div>
-            <div class="flex items-center justify-between">
-              <span class="text-gray-300 text-sm">Docker</span>
-              <div class="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
-                <div class="w-[35%] h-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full"></div>
-              </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[30%] bg-zinc-500 rounded-full"></div>
+            </div>
+          </div>
+          <div>
+            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
+              <span>Docker</span><span>35%</span>
+            </div>
+            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
+              <div class="h-full w-[35%] bg-zinc-500 rounded-full"></div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>

@@ -1,89 +1,79 @@
-/* You can add global styles to this file, and also import other style files */
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-html, body { 
-  height: 100%; 
-  margin: 0;
-  padding: 0;
-}
-
-body { 
-  margin: 0; 
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #0F172A; /* Un fondo slate-900 sólido y oscuro */
-  color: #E2E8F0; /* Un color de texto claro por defecto (slate-200) */
-  overflow-x: hidden;
-}
-
-/* Ensure no white space at the top */
-body::before {
-  content: '';
-  display: block;
-  height: 0;
-  width: 0;
-}
-
-/* Custom animations for the home component */
-@keyframes blob {
-  0% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(30px, -50px) scale(1.1);
-  }
-  66% {
-    transform: translate(-20px, 20px) scale(0.9);
-  }
-  100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-}
-
-.animate-blob {
-  animation: blob 7s infinite;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-4000 {
-  animation-delay: 4s;
-}
-
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: #09090b;
+  color: #fafafa;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0F172A; /* Color de fondo de la pista */
+  background: #09090b;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4F46E5; /* Color del pulgar de la barra (indigo-600) */
-  border-radius: 4px;
+  background: #3f3f46;
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6366F1; /* Color del pulgar al pasar el mouse (indigo-500) */
+  background: #52525b;
 }
 
-/* Custom styles for better mobile experience */
+@layer components {
+  .section-label {
+    @apply text-xs font-medium uppercase tracking-widest text-zinc-500 mb-3;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl font-semibold text-white tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed;
+  }
+
+  .card {
+    @apply bg-zinc-900 border border-zinc-800 rounded-lg;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 bg-white text-zinc-950 text-sm font-medium rounded-md transition-colors duration-200 hover:bg-zinc-200;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-2.5 border border-zinc-700 text-zinc-300 text-sm font-medium rounded-md transition-colors duration-200 hover:border-zinc-500 hover:text-white;
+  }
+
+  .tag {
+    @apply px-2.5 py-0.5 text-xs font-medium text-zinc-400 bg-zinc-800 border border-zinc-700 rounded;
+  }
+}
+
 @layer utilities {
   .line-clamp-3 {
     display: -webkit-box;
@@ -91,57 +81,19 @@ html {
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
-  
-  /* Smooth scrolling for mobile */
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Better touch targets for mobile */
+
   @media (max-width: 640px) {
     button, a {
       min-height: 44px;
       min-width: 44px;
     }
-  }
-  
-  /* Prevent horizontal scroll on mobile */
-  body {
-    overflow-x: hidden;
-  }
-  
-  /* Better modal experience on mobile */
-  @media (max-width: 640px) {
-    .modal-content {
-      margin: 1rem;
-      max-height: calc(100vh - 2rem);
-    }
-  }
-  
-  /* Improve text readability on mobile */
-  @media (max-width: 640px) {
+
     p {
       line-height: 1.6;
     }
-    
+
     h1, h2, h3, h4, h5, h6 {
       line-height: 1.2;
-    }
-  }
-  
-  /* Better spacing for mobile */
-  @media (max-width: 640px) {
-    .container {
-      padding-left: 1rem;
-      padding-right: 1rem;
-    }
-  }
-  
-  /* Improve button accessibility on mobile */
-  @media (max-width: 640px) {
-    button:focus, a:focus {
-      outline: 2px solid #ec4899;
-      outline-offset: 2px;
     }
   }
 }
