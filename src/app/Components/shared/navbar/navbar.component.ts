@@ -36,7 +36,7 @@ export class NavbarComponent {
 
   downloadCV() {
     const link = document.createElement('a');
-    link.href = '/CV para portafolio.pdf';
+    link.href = '/cv_JPMR.pdf';
     link.download = 'CV_JuanPablo_Morales.pdf';
     link.target = '_blank';
     document.body.appendChild(link);
