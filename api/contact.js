@@ -1,20 +1,11 @@
-import type { VercelRequest, VercelResponse } from '@vercel/node';
-
-interface ContactBody {
-  from_name?: string;
-  from_email?: string;
-  message?: string;
-  website?: string;
-}
-
 const MAX_MESSAGE_LENGTH = 2000;
 const MAX_NAME_LENGTH = 100;
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 
-const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const rateLimitMap = new Map();
 
-function getClientIp(req: VercelRequest): string {
+function getClientIp(req) {
   const forwarded = req.headers['x-forwarded-for'];
   if (typeof forwarded === 'string') {
     return forwarded.split(',')[0].trim();
@@ -22,7 +13,7 @@ function getClientIp(req: VercelRequest): string {
   return req.socket?.remoteAddress ?? 'unknown';
 }
 
-function isRateLimited(ip: string): boolean {
+function isRateLimited(ip) {
   const now = Date.now();
   const entry = rateLimitMap.get(ip);
 
@@ -39,11 +30,29 @@ function isRateLimited(ip: string): boolean {
   return false;
 }
 
-function isValidEmail(email: string): boolean {
+function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function validateBody(body: ContactBody): { valid: boolean; error?: string } {
+function parseBody(req) {
+  let body = req.body;
+
+  if (typeof body === 'string') {
+    try {
+      body = JSON.parse(body);
+    } catch {
+      return null;
+    }
+  }
+
+  if (!body || typeof body !== 'object') {
+    return null;
+  }
+
+  return body;
+}
+
+function validateBody(body) {
   const name = body.from_name?.trim();
   const email = body.from_email?.trim();
   const message = body.message?.trim();
@@ -67,38 +76,42 @@ function validateBody(body: ContactBody): { valid: boolean; error?: string } {
   return { valid: true };
 }
 
-async function sendViaEmailJS(params: {
-  from_name: string;
-  from_email: string;
-  message: string;
-}): Promise<void> {
+async function sendViaEmailJS(params) {
   const privateKey = process.env.EMAILJS_PRIVATE_KEY;
   const publicKey = process.env.EMAILJS_PUBLIC_KEY;
   const serviceId = process.env.EMAILJS_SERVICE_ID;
   const templateId = process.env.EMAILJS_TEMPLATE_ID;
 
   if (!privateKey || !publicKey || !serviceId || !templateId) {
-    throw new Error('Configuración de EmailJS incompleta.');
+    console.error('EmailJS: faltan variables de entorno', {
+      hasPrivateKey: !!privateKey,
+      hasPublicKey: !!publicKey,
+      hasServiceId: !!serviceId,
+      hasTemplateId: !!templateId,
+    });
+    throw new Error('MISSING_ENV');
   }
 
   const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      user_id: publicKey,
       service_id: serviceId,
       template_id: templateId,
+      user_id: publicKey,
       template_params: params,
       accessToken: privateKey,
     }),
   });
 
   if (!response.ok) {
-    throw new Error('Error al enviar el correo.');
+    const errorText = await response.text();
+    console.error('EmailJS API error:', response.status, errorText);
+    throw new Error('EMAILJS_FAILED');
   }
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async (req, res) => {
   if (req.method !== 'POST') {
     return res.status(405).json({ success: false, error: 'Método no permitido.' });
   }
@@ -111,7 +124,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
   }
 
-  const body = req.body as ContactBody;
+  const body = parseBody(req);
+  if (!body) {
+    return res.status(400).json({ success: false, error: 'Cuerpo de solicitud inválido.' });
+  }
 
   if (body.website?.trim()) {
     return res.status(200).json({ success: true });
@@ -124,15 +140,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await sendViaEmailJS({
-      from_name: body.from_name!.trim(),
-      from_email: body.from_email!.trim(),
-      message: body.message!.trim(),
+      from_name: body.from_name.trim(),
+      from_email: body.from_email.trim(),
+      message: body.message.trim(),
     });
     return res.status(200).json({ success: true });
-  } catch {
+  } catch (error) {
+    if (error.message === 'MISSING_ENV') {
+      return res.status(500).json({
+        success: false,
+        error: 'El servicio de correo no está configurado. Contacta al administrador.',
+      });
+    }
+
     return res.status(500).json({
       success: false,
       error: 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.',
     });
   }
-}
+};
