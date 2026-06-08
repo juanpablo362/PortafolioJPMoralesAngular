@@ -7,15 +7,15 @@
       "skills": [
         {
           "name": "Angular",
-          "level": 95,
-          "years": 4,
+          "level": 75,
+          "years": 3,
           "icon": "angular",
           "description": "Framework principal para desarrollo frontend escalable y modular."
         },
         {
           "name": "TypeScript",
-          "level": 90,
-          "years": 4,
+          "level": 70,
+          "years": 3,
           "icon": "typescript",
           "description": "Superset de JavaScript que aporta seguridad y escalabilidad al código."
         },
@@ -41,23 +41,23 @@
       "color": "green",
       "skills": [
         {
-          "name": ".NET Core",
-          "level": 92,
-          "years": 5,
+          "name": ".NET",
+          "level": 70,
+          "years": 3,
           "icon": "dotnet",
           "description": "Framework robusto para desarrollo backend, APIs y microservicios."
         },
         {
           "name": "Node.js",
-          "level": 85,
-          "years": 3,
+          "level": 55,
+          "years": 2,
           "icon": "nodejs",
           "description": "Runtime para crear servicios backend ligeros y escalables."
         },
         {
           "name": "Python",
-          "level": 80,
-          "years": 3,
+          "level": 45,
+          "years": 1,
           "icon": "python",
           "description": "Lenguaje versátil para automatización, scripting y desarrollo AI."
         },
@@ -77,15 +77,15 @@
       "skills": [
         {
           "name": "PostgreSQL",
-          "level": 85,
+          "level": 75,
           "years": 3,
           "icon": "postgresql",
           "description": "Base de datos relacional, soporte para modelado avanzado y consultas complejas."
         },
         {
           "name": "MongoDB",
-          "level": 80,
-          "years": 3,
+          "level": 50,
+          "years": 2,
           "icon": "mongodb",
           "description": "Base de datos NoSQL orientada a documentos para datos flexibles."
         },
@@ -105,28 +105,28 @@
       "skills": [
         {
           "name": "AWS",
-          "level": 85,
-          "years": 3,
+          "level": 35,
+          "years": 1,
           "icon": "aws",
           "description": "Implementación y gestión de infraestructura en la nube."
         },
         {
           "name": "Docker",
-          "level": 82,
-          "years": 3,
+          "level": 42,
+          "years": 1,
           "icon": "docker",
           "description": "Contenerización para despliegue eficiente y reproducible."
         },
         {
           "name": "CI/CD",
-          "level": 85,
-          "years": 3,
+          "level": 35,
+          "years": 2,
           "icon": "cicd",
           "description": "Automatización de pipelines de integración y despliegue continuo."
         },
         {
           "name": "Inteligencia Artificial",
-          "level": 78,
+          "level": 38,
           "years": 2,
           "icon": "ai",
           "description": "Implementación de modelos ML, procesamiento de datos y algoritmos inteligentes."

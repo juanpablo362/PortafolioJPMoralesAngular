@@ -89,6 +89,7 @@ export interface PersonalInfo {
   twitter: string;
   avatar: string;
   bio: string;
+  highlightStack?: string[];
 }
 
 export interface AboutData {

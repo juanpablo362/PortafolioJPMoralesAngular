@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, OnDestroy, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Project } from '../../../../Services/data.service';
 
@@ -9,9 +9,19 @@ import { Project } from '../../../../Services/data.service';
   templateUrl: './project-modal.component.html',
   styleUrl: './project-modal.component.css'
 })
-export class ProjectModalComponent {
+export class ProjectModalComponent implements OnChanges, OnDestroy {
   @Input() project: Project | null = null;
   @Output() close = new EventEmitter<void>();
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('project' in changes) {
+      document.body.style.overflow = this.project ? 'hidden' : '';
+    }
+  }
+
+  ngOnDestroy(): void {
+    document.body.style.overflow = '';
+  }
 
   closeModal(): void {
     this.close.emit();
@@ -20,40 +30,6 @@ export class ProjectModalComponent {
   openLink(url: string): void {
     if (url) {
       window.open(url, '_blank');
-    }
-  }
-
-  getStatusColor(status: string): string {
-    switch (status.toLowerCase()) {
-      case 'completado':
-        return 'bg-green-500';
-      case 'en desarrollo':
-        return 'bg-yellow-500';
-      case 'planificado':
-        return 'bg-blue-500';
-      default:
-        return 'bg-gray-500';
-    }
-  }
-
-  getCategoryColor(category: string): string {
-    switch (category) {
-      case 'Full Stack':
-        return 'bg-gradient-to-r from-purple-500 to-blue-500';
-      case 'Frontend':
-        return 'bg-gradient-to-r from-blue-500 to-cyan-500';
-      case 'Backend':
-        return 'bg-gradient-to-r from-green-500 to-emerald-500';
-      case 'Mobile':
-        return 'bg-gradient-to-r from-pink-500 to-rose-500';
-      case 'DevOps':
-        return 'bg-gradient-to-r from-orange-500 to-red-500';
-      case 'AI/ML':
-        return 'bg-gradient-to-r from-purple-500 to-pink-500';
-      case 'Data Visualization':
-        return 'bg-gradient-to-r from-indigo-500 to-purple-500';
-      default:
-        return 'bg-gradient-to-r from-gray-500 to-slate-500';
     }
   }
 }

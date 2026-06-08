@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { forkJoin } from 'rxjs';
 import { DataService, PersonalInfo } from '../../../Services/data.service';
 
 @Component({
@@ -11,28 +12,37 @@ import { DataService, PersonalInfo } from '../../../Services/data.service';
 })
 export class HeroComponent implements OnInit {
   personalInfo: PersonalInfo | null = null;
+  projectCount = 0;
   isLoading: boolean = true;
   error: string | null = null;
 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.loadPersonalInfo();
+    this.loadData();
   }
 
-  loadPersonalInfo(): void {
+  loadData(): void {
     this.isLoading = true;
-    this.dataService.getAboutData().subscribe({
-      next: (data) => {
-        this.personalInfo = data.personal;
+    forkJoin({
+      about: this.dataService.getAboutData(),
+      projects: this.dataService.getProjects()
+    }).subscribe({
+      next: ({ about, projects }) => {
+        this.personalInfo = about.personal;
+        this.projectCount = projects.length;
         this.isLoading = false;
       },
       error: (err) => {
         this.error = 'No se pudo cargar la información personal.';
         this.isLoading = false;
-        console.error('Error loading personal info:', err);
+        console.error('Error loading hero data:', err);
       }
     });
+  }
+
+  loadPersonalInfo(): void {
+    this.loadData();
   }
 
   getInitials(name: string | undefined): string {
@@ -49,4 +59,4 @@ export class HeroComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
   }
-} 
+}

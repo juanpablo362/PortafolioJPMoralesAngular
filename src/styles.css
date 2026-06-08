@@ -2,6 +2,12 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
+:root {
+  --accent: #5b8fd9;
+  --accent-soft: rgba(91, 143, 217, 0.12);
+  --accent-muted: rgba(91, 143, 217, 0.35);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -20,11 +26,12 @@ html, body {
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  background-color: #09090b;
-  color: #fafafa;
+  background-color: #0a0a0c;
+  color: #e4e4e7;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
 }
 
 ::-webkit-scrollbar {
@@ -32,45 +39,156 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #0a0a0c;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #3f3f46;
+  background: #52525b;
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #52525b;
+  background: #71717a;
 }
 
 @layer components {
   .section-label {
-    @apply text-xs font-medium uppercase tracking-widest text-zinc-500 mb-3;
+    @apply flex items-center gap-2.5 text-xs font-medium uppercase tracking-widest text-zinc-400 mb-3 pl-3 border-l-2 font-display;
+    border-left-color: var(--accent);
+  }
+
+  .section-number {
+    @apply text-accent font-semibold normal-case tracking-normal text-sm;
   }
 
   .section-title {
-    @apply text-3xl sm:text-4xl font-semibold text-white tracking-tight;
+    @apply text-3xl sm:text-4xl font-semibold text-zinc-50 tracking-tight font-display;
   }
 
   .section-subtitle {
-    @apply text-zinc-400 text-base sm:text-lg max-w-2xl leading-relaxed;
+    @apply text-zinc-300 text-base sm:text-lg max-w-2xl leading-relaxed;
+  }
+
+  .text-body {
+    @apply text-zinc-300 leading-relaxed;
+  }
+
+  .text-muted {
+    @apply text-zinc-400;
+  }
+
+  .text-caption {
+    @apply text-zinc-400 text-xs;
   }
 
   .card {
-    @apply bg-zinc-900 border border-zinc-800 rounded-lg;
+    @apply bg-zinc-900 border border-zinc-700 rounded-lg;
+  }
+
+  .card-interactive {
+    @apply card transition-all duration-200 hover:-translate-y-0.5;
+  }
+
+  .card-interactive:hover {
+    border-color: var(--accent-muted);
+    box-shadow: 0 8px 30px -12px var(--accent-soft);
+  }
+
+  .card-featured {
+    @apply card-interactive overflow-hidden;
+    border-color: var(--accent-muted);
+    background: linear-gradient(135deg, rgba(91, 143, 217, 0.06) 0%, #18181b 45%);
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center px-6 py-2.5 bg-white text-zinc-950 text-sm font-medium rounded-md transition-colors duration-200 hover:bg-zinc-200;
+    @apply inline-flex items-center justify-center px-6 py-2.5 bg-zinc-100 text-zinc-950 text-sm font-medium rounded-md transition-all duration-200 hover:bg-white;
+  }
+
+  .btn-primary:hover {
+    box-shadow: 0 0 0 1px var(--accent-muted), 0 4px 20px -6px var(--accent-soft);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-6 py-2.5 border border-zinc-700 text-zinc-300 text-sm font-medium rounded-md transition-colors duration-200 hover:border-zinc-500 hover:text-white;
+    @apply inline-flex items-center justify-center px-6 py-2.5 border border-zinc-600 text-zinc-200 text-sm font-medium rounded-md transition-all duration-200 hover:text-white;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--accent-muted);
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center px-5 py-2 text-sm font-medium rounded-md transition-all duration-200;
+    background-color: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid var(--accent-muted);
+  }
+
+  .btn-accent:hover {
+    background-color: rgba(91, 143, 217, 0.2);
+    color: #dbeafe;
   }
 
   .tag {
-    @apply px-2.5 py-0.5 text-xs font-medium text-zinc-400 bg-zinc-800 border border-zinc-700 rounded;
+    @apply px-2.5 py-0.5 text-xs font-medium text-zinc-300 bg-zinc-800 border border-zinc-600 rounded;
+  }
+
+  .tag-accent {
+    @apply tag;
+    background-color: var(--accent-soft);
+    border-color: var(--accent-muted);
+    color: #bfdbfe;
+  }
+
+  .nav-link {
+    @apply px-3 py-2 text-sm text-zinc-300 hover:text-white transition-colors duration-200;
+  }
+
+  .nav-link-active {
+    @apply text-white relative;
+  }
+
+  .nav-link-active::after {
+    content: '';
+    @apply absolute bottom-0 left-3 right-3 h-0.5 rounded-full;
+    background-color: var(--accent);
+  }
+
+  .filter-chip {
+    @apply px-3 py-1.5 text-xs font-medium text-zinc-400 border border-zinc-700 rounded-md transition-colors duration-200 hover:text-zinc-200;
+  }
+
+  .filter-chip:hover {
+    border-color: var(--accent-muted);
+  }
+
+  .filter-chip-active {
+    @apply text-white;
+    background-color: var(--accent-soft);
+    border-color: var(--accent);
+  }
+
+  .skill-bar {
+    @apply h-1.5 bg-zinc-800 rounded-full overflow-hidden;
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full transition-all duration-700;
+    background-color: var(--accent);
+  }
+
+  .stack-pill {
+    @apply px-3 py-1 text-xs font-medium rounded-full border;
+    background-color: var(--accent-soft);
+    border-color: var(--accent-muted);
+    color: #dbeafe;
+  }
+
+  .stat-pill {
+    @apply px-3 py-1.5 text-xs text-zinc-300 border border-zinc-700 rounded-md bg-zinc-900/80;
+  }
+
+  .stat-pill strong {
+    @apply text-accent font-semibold;
   }
 }
 
@@ -82,6 +200,23 @@ body {
     overflow: hidden;
   }
 
+  .section-fade-in {
+    animation: sectionFadeIn 0.55s ease-out both;
+  }
+
+  .hero-glow {
+    background: radial-gradient(ellipse 55% 45% at 72% 28%, rgba(91, 143, 217, 0.09), transparent 68%);
+  }
+
+  @keyframes sectionFadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 640px) {
     button, a {
       min-height: 44px;
@@ -89,11 +224,11 @@ body {
     }
 
     p {
-      line-height: 1.6;
+      line-height: 1.7;
     }
 
     h1, h2, h3, h4, h5, h6 {
-      line-height: 1.2;
+      line-height: 1.25;
     }
   }
 }

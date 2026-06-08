@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ContactService } from '../../../Services/contact.service';
+import { DataService, PersonalInfo } from '../../../Services/data.service';
 
 @Component({
   selector: 'app-contact',
@@ -12,6 +13,7 @@ import { ContactService } from '../../../Services/contact.service';
 })
 export class ContactComponent implements OnInit {
   contactForm!: FormGroup;
+  personalInfo: PersonalInfo | null = null;
   isSending: boolean = false;
   sendSuccess: boolean = false;
   sendError: string | null = null;
@@ -20,7 +22,8 @@ export class ContactComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private dataService: DataService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +32,12 @@ export class ContactComponent implements OnInit {
       from_email: ['', [Validators.required, Validators.email]],
       message: ['', [Validators.required, Validators.maxLength(this.maxMessageLength)]],
       website: ['']
+    });
+
+    this.dataService.getAboutData().subscribe({
+      next: (data) => {
+        this.personalInfo = data.personal;
+      }
     });
   }
 

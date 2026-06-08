@@ -1,62 +1,124 @@
 <div>
   <div class="container mx-auto px-4 sm:px-6 max-w-6xl mb-14">
-    <p class="section-label">Portafolio</p>
+    <p class="section-label"><span class="section-number">01</span> Portafolio</p>
     <h2 class="section-title mb-4">Proyectos</h2>
     <p class="section-subtitle">
-      Algunos de los proyectos que demuestran mi experiencia en desarrollo full stack y aplicaciones web.
+      Sistemas reales construidos con Angular, .NET y bases de datos relacionales.
     </p>
   </div>
 
   <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
     <div *ngIf="isLoading" class="flex justify-center py-20">
-      <div class="w-8 h-8 border-2 border-zinc-700 border-t-white rounded-full animate-spin"></div>
+      <div class="w-8 h-8 border-2 border-zinc-700 border-t-accent rounded-full animate-spin"></div>
     </div>
 
     <div *ngIf="error" class="text-center py-20">
-      <p class="text-red-400 mb-4">{{ error }}</p>
+      <p class="text-zinc-400 mb-4">{{ error }}</p>
       <button (click)="loadProjects()" class="btn-primary">Reintentar</button>
     </div>
 
-    <div *ngIf="!isLoading && !error" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+    <ng-container *ngIf="!isLoading && !error">
       <article
-        *ngFor="let project of filteredProjects"
-        (click)="openProjectModal(project)"
-        class="card group cursor-pointer overflow-hidden hover:border-zinc-600 transition-colors duration-200 flex flex-col">
-        <div class="h-44 overflow-hidden bg-zinc-800">
-          <img [src]="project.image" [alt]="project.title"
-               class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+        *ngIf="showFeatured && featuredProject"
+        (click)="openProjectModal(featuredProject)"
+        class="card-featured group cursor-pointer mb-10 grid grid-cols-1 lg:grid-cols-2 gap-0">
+        <div class="h-52 sm:h-64 lg:h-auto lg:min-h-[280px] overflow-hidden bg-zinc-800">
+          <img [src]="featuredProject.image" [alt]="featuredProject.title"
+               class="w-full h-full object-cover opacity-95 group-hover:opacity-100 transition-opacity duration-300">
         </div>
-
-        <div class="p-5 flex flex-col flex-grow">
-          <div class="flex items-start justify-between gap-2 mb-3">
-            <h3 class="text-base font-medium text-white group-hover:text-zinc-200 transition-colors">
-              {{ project.title }}
-            </h3>
-            <span class="text-xs text-zinc-500 shrink-0">{{ project.year }}</span>
-          </div>
-
-          <div class="flex flex-wrap gap-1.5 mb-3">
-            <span [class]="getCategoryColor(project.category)">{{ project.category }}</span>
-            <span [class]="getStatusColor(project.status)">{{ project.status }}</span>
-          </div>
-
-          <p class="text-zinc-500 text-sm leading-relaxed flex-grow line-clamp-3 mb-4">
-            {{ project.description }}
+        <div class="p-6 sm:p-8 flex flex-col justify-center">
+          <p class="text-xs font-medium uppercase tracking-widest text-accent mb-3 font-display">Proyecto destacado</p>
+          <h3 class="font-display text-2xl sm:text-3xl font-semibold text-zinc-50 mb-3 group-hover:text-white transition-colors">
+            {{ featuredProject.title }}
+          </h3>
+          <p class="text-zinc-300 text-sm sm:text-base leading-relaxed mb-5 line-clamp-3">
+            {{ featuredProject.description }}
           </p>
-
-          <div *ngIf="project.technologies?.length" class="flex flex-wrap gap-1.5 mt-auto">
-            <span *ngFor="let tech of project.technologies.slice(0, 3)" class="tag">{{ tech }}</span>
-            <span *ngIf="project.technologies.length > 3" class="tag">+{{ project.technologies.length - 3 }}</span>
+          <div class="flex flex-wrap gap-1.5 mb-6">
+            <span *ngFor="let tech of featuredProject.technologies.slice(0, 4)" class="tag-accent">{{ tech }}</span>
+          </div>
+          <div class="flex flex-wrap gap-3" (click)="$event.stopPropagation()">
+            <button *ngIf="featuredProject.demo" (click)="openLink(featuredProject.demo, $event)" class="btn-primary text-sm">
+              Ver demo
+            </button>
+            <button *ngIf="featuredProject.github" (click)="openLink(featuredProject.github, $event)" class="btn-secondary text-sm">
+              GitHub
+            </button>
+            <button (click)="openProjectModal(featuredProject); $event.stopPropagation()" class="btn-accent text-sm">
+              Detalles
+            </button>
           </div>
         </div>
       </article>
-    </div>
 
-    <div *ngIf="!isLoading && !error && filteredProjects.length === 0" class="text-center py-20">
-      <p class="text-zinc-500 mb-4">No se encontraron proyectos.</p>
-      <button (click)="clearFilters()" class="btn-secondary">Ver todos</button>
-    </div>
+      <div class="mb-8 space-y-4">
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs text-zinc-400 uppercase tracking-widest mr-1">Categoría</span>
+          <button
+            *ngFor="let category of categories"
+            (click)="filterByCategory(category)"
+            class="filter-chip"
+            [class.filter-chip-active]="selectedCategory === category">
+            {{ category === 'all' ? 'Todos' : category }}
+          </button>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-xs text-zinc-400 uppercase tracking-widest mr-1">Stack</span>
+          <button
+            *ngFor="let tech of technologies"
+            (click)="filterByTechnology(tech)"
+            class="filter-chip"
+            [class.filter-chip-active]="selectedTechnology === tech">
+            {{ tech === 'all' ? 'Todos' : tech }}
+          </button>
+        </div>
+        <button *ngIf="hasActiveFilters()" (click)="clearFilters()" class="text-xs text-accent hover:text-white transition-colors">
+          Limpiar filtros
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <article
+          *ngFor="let project of gridProjects"
+          (click)="openProjectModal(project)"
+          class="card-interactive group cursor-pointer overflow-hidden flex flex-col">
+          <div class="h-44 overflow-hidden bg-zinc-800">
+            <img [src]="project.image" [alt]="project.title"
+                 class="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity duration-300">
+          </div>
+
+          <div class="p-5 flex flex-col flex-grow">
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <h3 class="font-display text-base font-medium text-white group-hover:text-zinc-100 transition-colors">
+                {{ project.title }}
+              </h3>
+              <span class="text-xs text-zinc-400 shrink-0">{{ project.year }}</span>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5 mb-3">
+              <span [class]="getCategoryColor(project.category)">{{ project.category }}</span>
+              <span [class]="getStatusColor(project.status)">{{ project.status }}</span>
+            </div>
+
+            <p class="text-zinc-300 text-sm leading-relaxed flex-grow line-clamp-3 mb-4">
+              {{ project.description }}
+            </p>
+
+            <div *ngIf="project.technologies?.length" class="flex flex-wrap gap-1.5 mt-auto">
+              <span *ngFor="let tech of project.technologies.slice(0, 3)" class="tag">{{ tech }}</span>
+              <span *ngIf="project.technologies.length > 3" class="tag">+{{ project.technologies.length - 3 }}</span>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div *ngIf="filteredProjects.length === 0" class="text-center py-20">
+        <p class="text-zinc-400 mb-4">No se encontraron proyectos con esos filtros.</p>
+        <button (click)="clearFilters()" class="btn-secondary">Ver todos</button>
+      </div>
+    </ng-container>
   </div>
 
-  <app-project-modal [project]="selectedProject" (close)="closeProjectModal()"></app-project-modal>
 </div>
+
+<app-project-modal [project]="selectedProject" (close)="closeProjectModal()"></app-project-modal>

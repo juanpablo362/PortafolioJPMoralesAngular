@@ -1,80 +1,120 @@
-<div>
+<div class="section-fade-in">
   <div class="container mx-auto px-4 sm:px-6 max-w-6xl mb-14">
-    <p class="section-label">Escríbeme</p>
+    <p class="section-label"><span class="section-number">04</span> Escríbeme</p>
     <h2 class="section-title mb-4">Contacto</h2>
     <p class="section-subtitle">
       ¿Tienes una pregunta o una propuesta? Estaré encantado de leerte.
     </p>
   </div>
 
-  <div class="container mx-auto px-4 sm:px-6 max-w-xl">
-    <form
-      [formGroup]="contactForm"
-      (ngSubmit)="sendEmail()"
-      class="card p-6 sm:p-8 space-y-5">
+  <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12">
+      <aside *ngIf="personalInfo" class="lg:col-span-2">
+        <div class="card p-6 sm:p-8 h-full">
+          <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 mb-5">Información directa</p>
 
-      <div>
-        <label for="from_name" class="block text-sm text-zinc-400 mb-1.5">Nombre</label>
-        <input
-          type="text"
-          id="from_name"
-          formControlName="from_name"
-          class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-4 py-2.5 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors"
-          [ngClass]="{ 'border-red-800': from_name?.invalid && from_name?.touched }">
-        <p *ngIf="from_name?.invalid && from_name?.touched" class="text-red-400 text-xs mt-1.5">
-          El nombre es requerido.
-        </p>
+          <div class="space-y-4 text-sm">
+            <div>
+              <p class="text-zinc-300 text-xs mb-1">Ubicación</p>
+              <p class="text-zinc-300">{{ personalInfo.location }}</p>
+            </div>
+            <div>
+              <p class="text-zinc-300 text-xs mb-1">Email</p>
+              <a [href]="'mailto:' + personalInfo.email" class="text-zinc-300 hover:text-white transition-colors">
+                {{ personalInfo.email }}
+              </a>
+            </div>
+            <div>
+              <p class="text-zinc-300 text-xs mb-1">Teléfono</p>
+              <a [href]="'tel:' + personalInfo.phone" class="text-zinc-300 hover:text-white transition-colors">
+                {{ personalInfo.phone }}
+              </a>
+            </div>
+          </div>
+
+          <div class="flex gap-3 mt-8 pt-6 border-t border-zinc-700">
+            <a [href]="personalInfo.linkedin" target="_blank" rel="noopener noreferrer"
+               class="btn-secondary flex-1 text-xs !px-3">LinkedIn</a>
+            <a [href]="personalInfo.github" target="_blank" rel="noopener noreferrer"
+               class="btn-secondary flex-1 text-xs !px-3">GitHub</a>
+          </div>
+
+          <p class="text-zinc-300 text-xs mt-6 leading-relaxed">
+            Disponible para proyectos freelance, prácticas profesionales y oportunidades full stack.
+          </p>
+        </div>
+      </aside>
+
+      <div class="lg:col-span-3">
+        <form
+          [formGroup]="contactForm"
+          (ngSubmit)="sendEmail()"
+          class="card p-6 sm:p-8 space-y-5">
+
+          <div>
+            <label for="from_name" class="block text-sm text-zinc-300 mb-1.5">Nombre</label>
+            <input
+              type="text"
+              id="from_name"
+              formControlName="from_name"
+              class="w-full bg-zinc-950 border border-zinc-600 rounded-md px-4 py-2.5 text-zinc-100 text-sm placeholder:text-zinc-500 focus:outline-none focus:border-zinc-400 transition-colors"
+              [ngClass]="{ 'border-zinc-600': from_name?.invalid && from_name?.touched }">
+            <p *ngIf="from_name?.invalid && from_name?.touched" class="text-zinc-400 text-xs mt-1.5">
+              El nombre es requerido.
+            </p>
+          </div>
+
+          <div>
+            <label for="from_email" class="block text-sm text-zinc-300 mb-1.5">Email</label>
+            <input
+              type="email"
+              id="from_email"
+              formControlName="from_email"
+              class="w-full bg-zinc-950 border border-zinc-600 rounded-md px-4 py-2.5 text-zinc-100 text-sm placeholder:text-zinc-500 focus:outline-none focus:border-zinc-400 transition-colors"
+              [ngClass]="{ 'border-zinc-600': from_email?.invalid && from_email?.touched }">
+            <p *ngIf="from_email?.invalid && from_email?.touched" class="text-zinc-400 text-xs mt-1.5">
+              <span *ngIf="from_email?.errors?.['required']">El email es requerido.</span>
+              <span *ngIf="from_email?.errors?.['email']">Introduce un email válido.</span>
+            </p>
+          </div>
+
+          <div class="hidden" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" formControlName="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <div>
+            <label for="message" class="block text-sm text-zinc-300 mb-1.5">Mensaje</label>
+            <textarea
+              id="message"
+              formControlName="message"
+              rows="5"
+              class="w-full bg-zinc-950 border border-zinc-600 rounded-md px-4 py-2.5 text-zinc-100 text-sm placeholder:text-zinc-500 focus:outline-none focus:border-zinc-400 transition-colors resize-none"
+              [ngClass]="{ 'border-zinc-600': message?.invalid && message?.touched }"></textarea>
+            <p *ngIf="message?.invalid && message?.touched" class="text-zinc-400 text-xs mt-1.5">
+              El mensaje es requerido.
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="contactForm.invalid || isSending"
+            class="btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed">
+            <span *ngIf="!isSending">Enviar mensaje</span>
+            <span *ngIf="isSending" class="flex items-center gap-2">
+              <span class="w-4 h-4 border-2 border-zinc-950/30 border-t-zinc-950 rounded-full animate-spin"></span>
+              Enviando...
+            </span>
+          </button>
+
+          <p *ngIf="sendSuccess" class="text-sm text-zinc-300 text-center py-2 border border-zinc-700 bg-zinc-900 rounded-md">
+            Mensaje enviado con éxito. Gracias por contactarme.
+          </p>
+          <p *ngIf="sendError" class="text-sm text-zinc-300 text-center py-2 border border-zinc-700 bg-zinc-950 rounded-md">
+            {{ sendError }}
+          </p>
+        </form>
       </div>
-
-      <div>
-        <label for="from_email" class="block text-sm text-zinc-400 mb-1.5">Email</label>
-        <input
-          type="email"
-          id="from_email"
-          formControlName="from_email"
-          class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-4 py-2.5 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors"
-          [ngClass]="{ 'border-red-800': from_email?.invalid && from_email?.touched }">
-        <p *ngIf="from_email?.invalid && from_email?.touched" class="text-red-400 text-xs mt-1.5">
-          <span *ngIf="from_email?.errors?.['required']">El email es requerido.</span>
-          <span *ngIf="from_email?.errors?.['email']">Introduce un email válido.</span>
-        </p>
-      </div>
-
-      <div class="hidden" aria-hidden="true">
-        <label for="website">Website</label>
-        <input type="text" id="website" formControlName="website" tabindex="-1" autocomplete="off">
-      </div>
-
-      <div>
-        <label for="message" class="block text-sm text-zinc-400 mb-1.5">Mensaje</label>
-        <textarea
-          id="message"
-          formControlName="message"
-          rows="5"
-          class="w-full bg-zinc-950 border border-zinc-800 rounded-md px-4 py-2.5 text-white text-sm focus:outline-none focus:border-zinc-600 transition-colors resize-none"
-          [ngClass]="{ 'border-red-800': message?.invalid && message?.touched }"></textarea>
-        <p *ngIf="message?.invalid && message?.touched" class="text-red-400 text-xs mt-1.5">
-          El mensaje es requerido.
-        </p>
-      </div>
-
-      <button
-        type="submit"
-        [disabled]="contactForm.invalid || isSending"
-        class="btn-primary w-full disabled:opacity-40 disabled:cursor-not-allowed">
-        <span *ngIf="!isSending">Enviar mensaje</span>
-        <span *ngIf="isSending" class="flex items-center gap-2">
-          <span class="w-4 h-4 border-2 border-zinc-950/30 border-t-zinc-950 rounded-full animate-spin"></span>
-          Enviando...
-        </span>
-      </button>
-
-      <p *ngIf="sendSuccess" class="text-sm text-emerald-400 text-center py-2 border border-emerald-900 bg-emerald-950 rounded-md">
-        Mensaje enviado con éxito. Gracias por contactarme.
-      </p>
-      <p *ngIf="sendError" class="text-sm text-red-400 text-center py-2 border border-red-900 bg-red-950 rounded-md">
-        {{ sendError }}
-      </p>
-    </form>
+    </div>
   </div>
 </div>
