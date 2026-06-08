@@ -13,6 +13,7 @@ import { DataService, PersonalInfo } from '../../../Services/data.service';
 export class HeroComponent implements OnInit {
   personalInfo: PersonalInfo | null = null;
   projectCount = 0;
+  displayCount = 0;
   isLoading: boolean = true;
   error: string | null = null;
 
@@ -32,6 +33,7 @@ export class HeroComponent implements OnInit {
         this.personalInfo = about.personal;
         this.projectCount = projects.length;
         this.isLoading = false;
+        this.animateCount(projects.length);
       },
       error: (err) => {
         this.error = 'No se pudo cargar la información personal.';
@@ -43,6 +45,23 @@ export class HeroComponent implements OnInit {
 
   loadPersonalInfo(): void {
     this.loadData();
+  }
+
+  private animateCount(target: number): void {
+    const duration = 900;
+    const start = performance.now();
+
+    const step = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      this.displayCount = Math.round(target * eased);
+
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      }
+    };
+
+    requestAnimationFrame(step);
   }
 
   getInitials(name: string | undefined): string {

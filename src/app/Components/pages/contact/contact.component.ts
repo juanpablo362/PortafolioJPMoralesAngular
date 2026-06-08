@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ContactService } from '../../../Services/contact.service';
 import { DataService, PersonalInfo } from '../../../Services/data.service';
+import { ScrollRevealDirective } from '../../../Directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ScrollRevealDirective],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css'
 })

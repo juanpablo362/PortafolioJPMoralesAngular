@@ -1,5 +1,5 @@
-<div class="section-fade-in">
-  <div class="container mx-auto px-4 sm:px-6 max-w-6xl mb-14">
+<div>
+  <div class="container mx-auto px-4 sm:px-6 max-w-6xl mb-14" appScrollReveal>
     <p class="section-label"><span class="section-number">02</span> Perfil</p>
     <h2 class="section-title">Sobre mí</h2>
     <p class="section-subtitle mt-4">
@@ -19,7 +19,7 @@
   <div *ngIf="!isLoading && !error && aboutData" class="container mx-auto px-4 sm:px-6 max-w-6xl">
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <aside class="lg:col-span-1">
-        <div class="card p-6 lg:sticky lg:top-24">
+        <div class="card p-6 lg:sticky lg:top-24" appScrollReveal>
           <div class="text-center mb-6">
             <div class="w-32 h-32 mx-auto rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center mb-4 overflow-hidden shrink-0">
               <img
@@ -83,11 +83,14 @@
           </button>
         </div>
 
-        <div class="card p-6 sm:p-8">
+        <div class="card p-6 sm:p-8" appScrollReveal="120">
           <div *ngIf="activeTab === 'experience'">
-            <h3 class="text-lg font-medium text-white mb-6">Experiencia profesional</h3>
+            <h3 class="text-lg font-medium text-white mb-6 font-display">Experiencia profesional</h3>
             <div class="space-y-8">
-              <div *ngFor="let exp of aboutData.experience" class="border-b border-zinc-700 pb-8 last:border-0 last:pb-0">
+              <div
+                *ngFor="let exp of aboutData.experience; let i = index"
+                class="border-b border-zinc-700 pb-8 last:border-0 last:pb-0 pl-4 border-l-2 border-l-accent/40"
+                [appScrollReveal]="i * 100">
                 <div class="flex flex-col sm:flex-row sm:justify-between gap-1 mb-3">
                   <div>
                     <p class="text-white font-medium">{{ exp.position }}</p>

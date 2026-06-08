@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService, Project } from '../../../Services/data.service';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
+import { ScrollRevealDirective } from '../../../Directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectModalComponent],
+  imports: [CommonModule, ProjectModalComponent, ScrollRevealDirective],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })

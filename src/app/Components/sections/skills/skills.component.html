@@ -1,6 +1,6 @@
-<section class="section-fade-in">
+<section>
   <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
-    <div class="mb-14">
+    <div class="mb-14" appScrollReveal>
       <p class="section-label"><span class="section-number">03</span> Tecnologías</p>
       <h2 class="section-title mb-4">Stack tecnológico</h2>
       <p class="section-subtitle">
@@ -9,7 +9,7 @@
     </div>
 
     <div *ngIf="isLoading" class="flex justify-center py-20">
-      <div class="w-8 h-8 border-2 border-zinc-700 border-t-white rounded-full animate-spin"></div>
+      <div class="w-8 h-8 border-2 border-zinc-700 border-t-accent rounded-full animate-spin"></div>
     </div>
 
     <div *ngIf="error" class="text-center py-20">
@@ -18,8 +18,11 @@
 
     <ng-container *ngIf="!isLoading && !error && skillsData">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-        <div *ngFor="let category of skillsData.categories" class="card-interactive p-6">
-          <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-700">
+        <div
+          *ngFor="let category of skillsData.categories; let i = index"
+          class="card-interactive p-6"
+          [appScrollReveal]="i * 100">
+          <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-700 font-display">
             {{ category.name }}
           </h3>
           <div class="space-y-4">
@@ -29,20 +32,27 @@
                 <span class="text-zinc-400">{{ formatYears(skill.years) }}</span>
               </div>
               <div class="skill-bar">
-                <div class="skill-bar-fill" [style.width.%]="skill.level"></div>
+                <div
+                  class="skill-bar-fill skill-bar-animate"
+                  [style.--level]="skill.level + '%'"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="card p-6 sm:p-8">
+      <div class="card p-6 sm:p-8" appScrollReveal="200">
         <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 mb-4">Habilidades blandas</p>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          <div *ngFor="let skill of skillsData.softSkills" class="border border-zinc-700 rounded-md p-4">
+          <div
+            *ngFor="let skill of skillsData.softSkills; let i = index"
+            class="border border-zinc-700 rounded-md p-4 transition-all duration-300 hover:border-accent-muted hover:bg-accent-soft/30"
+            [appScrollReveal]="i * 60">
             <p class="text-sm font-medium text-white mb-2">{{ skill.name }}</p>
             <div class="skill-bar mb-2">
-              <div class="skill-bar-fill" [style.width.%]="skill.level"></div>
+              <div
+                class="skill-bar-fill skill-bar-animate"
+                [style.--level]="skill.level + '%'"></div>
             </div>
             <p class="text-zinc-300 text-xs leading-relaxed">{{ skill.description }}</p>
           </div>

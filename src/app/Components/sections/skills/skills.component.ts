@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService, SkillsData } from '../../../Services/data.service';
+import { ScrollRevealDirective } from '../../../Directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollRevealDirective],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.css'
 })

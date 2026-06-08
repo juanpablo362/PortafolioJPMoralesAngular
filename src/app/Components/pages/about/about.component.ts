@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService, AboutData } from '../../../Services/data.service';
+import { ScrollRevealDirective } from '../../../Directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ScrollRevealDirective],
   templateUrl: './about.component.html',
   styleUrl: './about.component.css'
 })
