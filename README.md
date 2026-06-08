@@ -1,59 +1,59 @@
 # PortafolioJPMR
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.11.
+Portafolio personal construido con Angular 19, TailwindCSS y despliegue estático en Vercel.
 
-## Development server
+## Desarrollo local
 
-To start a local development server, run:
+### Solo frontend
 
 ```bash
+npm install
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+La app estará en `http://localhost:4200/`. Los datos se cargan desde `src/Assets/Data/*.json`.
 
-## Code scaffolding
+### Formulario de contacto (con API)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+El envío de correo pasa por la función serverless `api/contact.ts`. Para probarlo en local:
+
+1. Copia `.env.example` a `.env.local` y completa las variables de EmailJS.
+2. Instala Vercel CLI: `npm i -g vercel`
+3. En una terminal, ejecuta `vercel dev` (puerto 3000, sirve la API).
+4. En otra terminal, ejecuta `ng serve` (el proxy en `proxy.conf.json` redirige `/api` a `localhost:3000`).
+
+Alternativa: `vercel dev` puede servir también el build de Angular si se configura el proyecto en Vercel.
+
+## Variables de entorno
+
+Configúralas en **Vercel Dashboard → Settings → Environment Variables** (nunca en el repositorio):
+
+| Variable | Descripción |
+|----------|-------------|
+| `EMAILJS_PRIVATE_KEY` | Private Key de EmailJS (solo servidor) |
+| `EMAILJS_PUBLIC_KEY` | Public Key / User ID de EmailJS |
+| `EMAILJS_SERVICE_ID` | ID del servicio EmailJS |
+| `EMAILJS_TEMPLATE_ID` | ID de la plantilla EmailJS |
+
+**Importante:** regenera las claves en EmailJS si estuvieron expuestas previamente en el cliente.
+
+## Build y despliegue
 
 ```bash
-ng generate component component-name
+ng build --configuration production
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Vercel usa `vercel.json` para el build estático y las funciones en `api/`.
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## Tests
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## Estructura relevante
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- `src/Assets/Data/` — contenido del portafolio (proyectos, skills, about)
+- `api/contact.ts` — proxy seguro para EmailJS
+- `src/app/Services/contact.service.ts` — cliente HTTP del formulario
+- `src/environments/` — configuración por entorno
