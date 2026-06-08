@@ -50,6 +50,7 @@ export class ContactComponent implements OnInit {
       },
       error: (err) => {
         this.sendError = err.error?.error
+          ?? err.error?.message
           ?? 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
         this.isSending = false;
         console.error('Error sending email:', err);

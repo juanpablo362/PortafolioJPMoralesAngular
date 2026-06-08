@@ -1,6 +1,11 @@
 {
   "buildCommand": "ng build --configuration production",
   "outputDirectory": "dist/portafolio-jpmr/browser",
+  "functions": {
+    "api/**/*.js": {
+      "maxDuration": 10
+    }
+  },
   "rewrites": [
     {
       "source": "/((?!api/).*)",
