@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import emailjs from '@emailjs/browser';
+import { ContactService } from '../../../Services/contact.service';
 
 @Component({
   selector: 'app-contact',
@@ -16,17 +16,23 @@ export class ContactComponent implements OnInit {
   sendSuccess: boolean = false;
   sendError: string | null = null;
 
-  constructor(private fb: FormBuilder) {}
+  private readonly maxMessageLength = 2000;
+
+  constructor(
+    private fb: FormBuilder,
+    private contactService: ContactService
+  ) {}
 
   ngOnInit(): void {
     this.contactForm = this.fb.group({
-      from_name: ['', Validators.required],
+      from_name: ['', [Validators.required, Validators.maxLength(100)]],
       from_email: ['', [Validators.required, Validators.email]],
-      message: ['', Validators.required]
+      message: ['', [Validators.required, Validators.maxLength(this.maxMessageLength)]],
+      website: ['']
     });
   }
 
-  async sendEmail() {
+  sendEmail(): void {
     if (this.contactForm.invalid) {
       this.contactForm.markAllAsTouched();
       return;
@@ -35,21 +41,22 @@ export class ContactComponent implements OnInit {
     this.isSending = true;
     this.sendSuccess = false;
     this.sendError = null;
-    
-    emailjs.init('pRBJrHKqMT0eC0dHt');
-    try {
-      await emailjs.send("service_y10kk4g", "template_a54j3t6", this.contactForm.value);
-      this.sendSuccess = true;
-      this.contactForm.reset();
-    } catch (error) {
-      this.sendError = 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
-      console.error('Error sending email:', error);
-    } finally {
-      this.isSending = false;
-    }
+
+    this.contactService.sendMessage(this.contactForm.value).subscribe({
+      next: () => {
+        this.sendSuccess = true;
+        this.contactForm.reset();
+        this.isSending = false;
+      },
+      error: (err) => {
+        this.sendError = err.error?.error
+          ?? 'Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.';
+        this.isSending = false;
+        console.error('Error sending email:', err);
+      }
+    });
   }
 
-  // Helper getters for easy access in template
   get from_name() { return this.contactForm.get('from_name'); }
   get from_email() { return this.contactForm.get('from_email'); }
   get message() { return this.contactForm.get('message'); }

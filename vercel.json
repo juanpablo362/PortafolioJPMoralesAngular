@@ -1,46 +1,10 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/portafolio-jpmr/browser"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/assets/(.*)",
-      "dest": "/assets/$1"
-    },
-    {
-      "src": "/(.*\\.js)",
-      "headers": {
-        "Content-Type": "application/javascript"
-      },
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*\\.css)",
-      "headers": {
-        "Content-Type": "text/css"
-      },
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*\\.ico)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*\\.pdf)",
-      "dest": "/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
   "buildCommand": "ng build --configuration production",
-  "outputDirectory": "dist/portafolio-jpmr/browser"
-} 
+  "outputDirectory": "dist/portafolio-jpmr/browser",
+  "rewrites": [
+    {
+      "source": "/((?!api/).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
