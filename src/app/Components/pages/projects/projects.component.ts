@@ -2,25 +2,27 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DataService, Project } from '../../../Services/data.service';
 import { ProjectModalComponent } from './project-modal/project-modal.component';
+import { ScrollRevealDirective } from '../../../Directives/scroll-reveal.directive';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, ProjectModalComponent],
+  imports: [CommonModule, ProjectModalComponent, ScrollRevealDirective],
   templateUrl: './projects.component.html',
   styleUrl: './projects.component.css'
 })
 export class ProjectsComponent implements OnInit {
   projects: Project[] = [];
   filteredProjects: Project[] = [];
+  featuredProject: Project | null = null;
   selectedCategory: string = 'all';
   selectedTechnology: string = 'all';
   isLoading: boolean = true;
   error: string | null = null;
   selectedProject: Project | null = null;
 
-  categories: string[] = ['all', 'Full Stack', 'Frontend', 'Backend', 'Mobile', 'DevOps', 'AI/ML', 'Data Visualization'];
-  technologies: string[] = ['all', 'Angular', 'Vue.js', 'React', '.NET Core', 'Node.js', 'Python', 'AWS', 'Azure', 'Docker'];
+  categories: string[] = ['all'];
+  technologies: string[] = ['all'];
 
   constructor(private dataService: DataService) {}
 
@@ -33,7 +35,9 @@ export class ProjectsComponent implements OnInit {
     this.dataService.getProjects().subscribe({
       next: (projects) => {
         this.projects = projects;
+        this.featuredProject = projects.find((p) => p.id === 1) ?? projects[0] ?? null;
         this.filteredProjects = projects;
+        this.buildFilterOptions(projects);
         this.isLoading = false;
       },
       error: (error) => {
@@ -42,6 +46,27 @@ export class ProjectsComponent implements OnInit {
         console.error('Error loading projects:', error);
       }
     });
+  }
+
+  private buildFilterOptions(projects: Project[]): void {
+    const categorySet = new Set(projects.map((p) => p.category));
+    this.categories = ['all', ...Array.from(categorySet).sort()];
+
+    const techSet = new Set(projects.flatMap((p) => p.technologies));
+    this.technologies = ['all', ...Array.from(techSet).sort()];
+  }
+
+  get showFeatured(): boolean {
+    return !!this.featuredProject
+      && !this.hasActiveFilters()
+      && this.filteredProjects.some((p) => p.id === this.featuredProject!.id);
+  }
+
+  get gridProjects(): Project[] {
+    if (!this.showFeatured) {
+      return this.filteredProjects;
+    }
+    return this.filteredProjects.filter((p) => p.id !== this.featuredProject!.id);
   }
 
   filterByCategory(category: string): void {
@@ -68,6 +93,10 @@ export class ProjectsComponent implements OnInit {
     this.filteredProjects = this.projects;
   }
 
+  hasActiveFilters(): boolean {
+    return this.selectedCategory !== 'all' || this.selectedTechnology !== 'all';
+  }
+
   openProjectModal(project: Project): void {
     this.selectedProject = project;
   }
@@ -76,14 +105,21 @@ export class ProjectsComponent implements OnInit {
     this.selectedProject = null;
   }
 
+  openLink(url: string, event?: Event): void {
+    event?.stopPropagation();
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
+
   getStatusColor(status: string): string {
     switch (status.toLowerCase()) {
       case 'completado':
-        return 'tag text-emerald-400 border-emerald-800 bg-emerald-950';
+        return 'tag-accent';
       case 'en desarrollo':
-        return 'tag text-amber-400 border-amber-800 bg-amber-950';
+        return 'tag text-zinc-300 border-zinc-600 bg-zinc-900';
       case 'planificado':
-        return 'tag text-blue-400 border-blue-800 bg-blue-950';
+        return 'tag text-zinc-400 border-zinc-700 bg-zinc-950';
       default:
         return 'tag';
     }

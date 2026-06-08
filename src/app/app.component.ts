@@ -19,7 +19,8 @@ import { ContactComponent } from './Components/pages/contact/contact.component';
     FooterComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
+  host: { class: 'block' }
 })
 export class AppComponent {
   title = 'PortafolioJPMR';

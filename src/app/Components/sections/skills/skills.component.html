@@ -1,117 +1,63 @@
 <section>
   <div class="container mx-auto px-4 sm:px-6 max-w-6xl">
-    <div class="mb-14">
-      <p class="section-label">Tecnologías</p>
+    <div class="mb-14" appScrollReveal>
+      <p class="section-label"><span class="section-number">03</span> Tecnologías</p>
       <h2 class="section-title mb-4">Stack tecnológico</h2>
       <p class="section-subtitle">
         Herramientas y frameworks que utilizo para construir soluciones web robustas y escalables.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="card p-6">
-        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Frontend</h3>
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>Angular</span><span>65%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[65%] bg-zinc-400 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>React</span><span>30%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[30%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card p-6">
-        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Backend</h3>
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>.NET Core</span><span>60%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[60%] bg-zinc-400 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>Node.js</span><span>35%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[35%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>Java</span><span>25%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[25%] bg-zinc-600 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card p-6">
-        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Base de datos</h3>
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>PostgreSQL</span><span>55%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[55%] bg-zinc-400 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>SQL Server</span><span>50%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[50%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>MongoDB</span><span>45%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[45%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="card p-6">
-        <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-800">Cloud & DevOps</h3>
-        <div class="space-y-4">
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>AWS</span><span>30%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[30%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-          <div>
-            <div class="flex justify-between text-xs text-zinc-400 mb-1.5">
-              <span>Docker</span><span>35%</span>
-            </div>
-            <div class="h-1 bg-zinc-800 rounded-full overflow-hidden">
-              <div class="h-full w-[35%] bg-zinc-500 rounded-full"></div>
-            </div>
-          </div>
-        </div>
-      </div>
+    <div *ngIf="isLoading" class="flex justify-center py-20">
+      <div class="w-8 h-8 border-2 border-zinc-700 border-t-accent rounded-full animate-spin"></div>
     </div>
+
+    <div *ngIf="error" class="text-center py-20">
+      <p class="text-zinc-400 mb-4">{{ error }}</p>
+    </div>
+
+    <ng-container *ngIf="!isLoading && !error && skillsData">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+        <div
+          *ngFor="let category of skillsData.categories; let i = index"
+          class="card-interactive p-6"
+          [appScrollReveal]="i * 100">
+          <h3 class="text-sm font-medium text-white mb-5 pb-3 border-b border-zinc-700 font-display">
+            {{ category.name }}
+          </h3>
+          <div class="space-y-4">
+            <div *ngFor="let skill of category.skills">
+              <div class="flex justify-between text-xs mb-1.5">
+                <span class="text-zinc-200">{{ skill.name }}</span>
+                <span class="text-zinc-400">{{ formatYears(skill.years) }}</span>
+              </div>
+              <div class="skill-bar">
+                <div
+                  class="skill-bar-fill skill-bar-animate"
+                  [style.--level]="skill.level + '%'"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card p-6 sm:p-8" appScrollReveal="200">
+        <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 mb-4">Habilidades blandas</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div
+            *ngFor="let skill of skillsData.softSkills; let i = index"
+            class="border border-zinc-700 rounded-md p-4 transition-all duration-300 hover:border-accent-muted hover:bg-accent-soft/30"
+            [appScrollReveal]="i * 60">
+            <p class="text-sm font-medium text-white mb-2">{{ skill.name }}</p>
+            <div class="skill-bar mb-2">
+              <div
+                class="skill-bar-fill skill-bar-animate"
+                [style.--level]="skill.level + '%'"></div>
+            </div>
+            <p class="text-zinc-300 text-xs leading-relaxed">{{ skill.description }}</p>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </section>

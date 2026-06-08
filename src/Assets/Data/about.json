@@ -2,7 +2,8 @@
   "personal": {
     "name": "Juan Pablo",
     "title": "Desarrollador Full Stack Jr.",
-    "bio": "Estudiante de ingenieria en software. Apasionado por el desarrollo de soluciones tecnologías especializado en Angular, .NET y PostgreSQL. Siempre en busca de aprender y crear soluciones útiles.",
+    "bio": "Desarrollo sistemas web con Angular, .NET y PostgreSQL en equipo Scrum. Actualmente en el Laboratorio Digital de la UTS, construyendo soluciones para la universidad y proyectos de Gobierno Digital.",
+    "highlightStack": ["Angular", ".NET", "PostgreSQL"],
     "location": "Ciudad Obregón, Sonora",
     "email": "jpmoralescontacto@gmail.com",
     "phone": "+52 (644) 260-1855",
